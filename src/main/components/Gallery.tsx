@@ -1,12 +1,23 @@
 import structures from "../../data";
+import {Link} from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import Container from "@mui/material/Container";
 import ImageListItemBar from '@mui/material/ImageListItemBar';
+import {styled} from "@mui/material/styles";
 
 const imgData=structures.slice(0, -1);
+
+const StyledLink = styled(Link)(({ theme }) => ({
+    color: theme.palette.primary.main, // Используем тему MUI
+    textDecoration: 'none',
+    '&:hover': {
+        textDecoration: 'none',
+        opacity: '90%'
+    },
+}));
 
 
 function Gallery() {
@@ -24,16 +35,18 @@ function Gallery() {
                         },
                     }}
                     gap={8}>
-                    {imgData.map((item) => (
-                        <ImageListItem key={item.img}>
-                            <img
-                                srcSet={ item.img }
-                                src={ item.img }
-                                alt={ item.title }
-                                loading="lazy"
-                            />
-                            <ImageListItemBar position="bottom" title={ item.title } />
-                        </ImageListItem>
+                    {imgData.map((item, index) => (
+                        <StyledLink key={ index } to={ "/building/" + index }>
+                            <ImageListItem key={item.img}>
+                                    <img
+                                        srcSet={ item.img }
+                                        src={ item.img }
+                                        alt={ item.title }
+                                        loading="lazy"
+                                    />
+                                    <ImageListItemBar position="bottom" title={ item.title } />
+                            </ImageListItem>
+                        </StyledLink>
                     ))}
                 </ImageList>
             </Box>

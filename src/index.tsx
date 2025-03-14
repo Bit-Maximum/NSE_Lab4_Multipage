@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles/index.css';
-import App from './App';
 import {
     createBrowserRouter,
     RouterProvider,
@@ -9,6 +8,7 @@ import {
 
 import  List  from "./list/List";
 import  Main  from "./main/Main";
+import Building from "./buildings/Building";
 
 const router = createBrowserRouter([
     {
@@ -18,6 +18,11 @@ const router = createBrowserRouter([
     {
         path: "/list",
         element: <List />,
+    },
+
+    {
+        path: "/building/:id",
+        element: <Building />,
     },
 ]);
 
